@@ -36,5 +36,16 @@ public class Lista2Tarefa2 {
 				System.out.printf("A sequancia de numeros crescnetes é %d, %d e %d",b,a,c);
 			}
 		}
+		
+		else if ((a==b) || (b==c) || (a==c)) {
+			if ((a==b) && c>a) {
+				System.out.printf("A sequancia de numeros crescnetes é %d, %d e %d",b,a,c);				
+			}else if ((c==b) && a>c){
+				System.out.printf("A sequancia de numeros crescnetes é %d, %d e %d",b,c,a);
+			}else if ((a==c) && b>c){
+				System.out.printf("A sequancia de numeros crescnetes é %d, %d e %d",a,c,b);				
+			}else
+			System.out.printf("Todos os numeros são iguais %d, %d e %d",a,b,c);					
+		}
 	}
 }
