@@ -4,7 +4,7 @@ programa
 	funcao inicio()
 	{
 		inteiro n=3
-		real soma=1.0
+		real soma=0.0
 		para (n; n<=500;n+=3){
 			se ((n%2)!=0){
 				soma = soma+ n
@@ -17,7 +17,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 185; 
+ * @POSICAO-CURSOR = 124; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

@@ -8,7 +8,7 @@ programa
 			
 			escreva("Entre com um numero positivo, caso o numero seja negativo, programa irá interromper ")
 			leia(n)
-			se(n>0){
+			se(n>=0){
 			soma= soma+n
 			total++
 			}	
@@ -22,7 +22,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 221; 
+ * @POSICAO-CURSOR = 35; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
