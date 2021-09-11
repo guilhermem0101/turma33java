@@ -1,18 +1,17 @@
 package entities;
 
-public abstract class Conta {
+public class Conta {
+// Atributos
 	private int numero;
 	private String cpf;
 	private double saldo;
 	private boolean ativo;
-	//construtor
+	
 	public Conta(int numero, String cpf) {
 		super();
 		this.numero = numero;
 		this.cpf = cpf;
-		
 	}
-	//encapsulamento
 	public int getNumero() {
 		return numero;
 	}
@@ -27,10 +26,8 @@ public abstract class Conta {
 	}
 	public double getSaldo() {
 		return saldo;
-	}
-	/*public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}*/
+	} 
+
 	public boolean isAtivo() {
 		return ativo;
 	}
@@ -38,28 +35,41 @@ public abstract class Conta {
 		this.ativo = ativo;
 	}
 	
-	//metodos
 	public void credito(double valor) {
-		this.saldo = saldo + valor;
-		
+		this.saldo += valor;
 	}
 	
 	public void debito(double valor) {
 		
-		if (valor <=0) {
-			System.out.println("Valor incorreto");
+		if (valor == 0) {
+			System.out.println("Valor zerado. Por favor, verifique e tente novamente.");
 		}
-		else if (valor>saldo) {
-			System.out.println("Valor incorreto");
+		else if(valor < 0) {
+			System.out.println("Impossível realizar esta operação com valor negativo.\nPor favor, verifique e tente novamente.");
 		}
+		else if (valor > saldo) {
+			System.out.println("Saldo insuficiente.");
+		} 
 		else {
-			this.saldo = saldo - valor;
-		}
-		
-		
+			saldo -= valor;
+		}		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
-		return "Conta [numero=" + numero + ", cpf=" + cpf + ", saldo=" + saldo + "]";
+		return "Conta numero=" + numero + ", cpf=" + cpf + ", saldo=" + saldo ;
 	}
+
+	
+
 }

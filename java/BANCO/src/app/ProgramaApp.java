@@ -8,7 +8,7 @@ import entities.ContaEmpresa;
 import entities.ContaEstudantil;
 import entities.ContaPoupanca;
 
-public class ProgramaTeste {
+public class ProgramaApp {
 
 	public static void main(String[] args) {
 		// Variaveis
@@ -19,9 +19,9 @@ public class ProgramaTeste {
 		
 		//Chamar classes
 		Scanner leia = new Scanner(System.in);
-		Conta cest1 = new ContaEstudantil(123,"123.456.789-00",1000);
+		ContaEstudantil cest1 = new ContaEstudantil(123,"123.456.789-00",1000);
 		ContaPoupanca cpou1 = new ContaPoupanca(123,"123.456.789-00",5);
-		ContaCorrente ccor1 = new ContaCorrente(123,"123.456.789-00",1);
+		ContaCorrente ccor1 = new ContaCorrente(123,"123.456.789-00",0);
 		ContaEmpresa cemp1 = new ContaEmpresa(123,"123.456.789-00",10000.00);
 		
 		
@@ -56,10 +56,7 @@ public class ProgramaTeste {
 				
 				for (int x=1; x<=10; x++) {
 					System.out.println("MOVIMENTO "+x);
-					System.out.println("SALDO ATUAL R$ :"+cpou1.getSaldo());
-					System.out.println("Qual o dia atual? ");
-					dia = leia.nextInt();
-					cpou1.correcao(dia);				
+					System.out.println("SALDO ATUAL R$ :"+cpou1.getSaldo());			
 					System.out.print("Movimento D-débito ou C-crédito ? :");
 					tipo = leia.next().toUpperCase().charAt(0);
 					System.out.print("Digite o valor :");
@@ -71,13 +68,19 @@ public class ProgramaTeste {
 						cpou1.credito(valor);
 					} else {
 						System.out.println("Não foi informado um tipo correto...");
-					}
+						
+					}					
+					System.out.println("Qual o dia atual? ");
+					dia = leia.nextInt();
+					cpou1.correcao(dia);
 					System.out.println("Continua S/N : ");
+					
 					resCada = leia.next().toUpperCase().charAt(0);
 					if (resCada=='N') {			
 						break;
-					}
+					} 
 				}
+				break;
 			
 			case 2:
 				// Conta Corrente
@@ -101,25 +104,24 @@ public class ProgramaTeste {
 					} else {
 						System.out.println("Não foi informado um tipo correto...");
 					}
+					System.out.println("OPORTUNIDADE: Deseja retirar um talão de cheque?"
+							+ "\nLIMITE MÁXIMO DE 3 TALÕES."
+							+ "\nVALOR POR TALÃO: R$ 30.00");
+					resCada = leia.next().toUpperCase().charAt(0);
+					if(resCada == 'S') {
+						ccor1.cheque();
+						System.out.println("SALDO ATUAL R$ :"+ccor1.getSaldo());	
+						System.out.println("Cheques retirados: "+ ccor1.getContadorTalao());
+					}
 					System.out.println("Continua S/N : ");
 					resCada = leia.next().toUpperCase().charAt(0);
 					if (resCada=='N') {	
 						leia.nextLine();
-						System.out.println("OPORTUNIDADE: Deseja retirar um talão de cheque?"
-								+ "\nLIMITE MÁXIMO DE 3 TALÕES."
-								+ "\nVALOR POR TALÃO: R$ 30.00");
-						resCada = leia.next().toUpperCase().charAt(0);
-						if(resCada == 'S') {
-							ccor1.cheque();
-							System.out.println("SALDO ATUAL R$ :"+ccor1.getSaldo());					
-						}
-						else{
-							System.out.println("OBRIGADO, VOLTE SEMPRE");
-							}
+						System.out.println("OBRIGADO, VOLTE SEMPRE");
 						break;
 						}
-					break;
 					}
+				break;
 				
 				
 				
@@ -150,12 +152,21 @@ public class ProgramaTeste {
 					System.out.print("Digite o valor :");
 					valor = leia.nextDouble();
 					if (tipo=='D') {
-						cpou1.debito(valor);
+						cemp1.debito(valor);
 					} 
 					else if (tipo=='C') {
-						cpou1.credito(valor);
+						cemp1.credito(valor);
 					} else {
 						System.out.println("Não foi informado um tipo correto...");
+					}
+					System.out.printf("\nVocê tem um empréstimo no valor de R$ %.2f aprovado, deseja utilizar?"
+							+ "\nS - Sim"
+							+ "\nN- Não\n", cemp1.getEmprestimoEmpresa());
+					resCada = leia.next().toUpperCase().charAt(0);
+					if(resCada=='S') {
+						System.out.println("Qual o valor do empréstimo?");
+						valor = leia.nextDouble();
+						cemp1.pedirEmprestimo(valor);
 					}
 					System.out.println("Continua S/N : ");
 					resCada = leia.next().toUpperCase().charAt(0);
@@ -174,34 +185,46 @@ public class ProgramaTeste {
 				System.out.println("Cuidando do seu dinheiro por gerações.");
 				System.out.println("-----------------------------------------------");
 				System.out.println("CONTA ESTUDANTIL");
-				/*	
+					
 				for (int x=1; x<=10; x++) {
 					System.out.println("MOVIMENTO "+x);
-					System.out.println("SALDO ATUAL R$ :"+cpou1.getSaldo());
+					System.out.println("SALDO ATUAL R$ :"+cest1.getSaldo());
 					System.out.print("Movimento D-débito ou C-crédito ? :");
 					tipo = leia.next().toUpperCase().charAt(0);
 					System.out.print("Digite o valor :");
 					valor = leia.nextDouble();
 					if (tipo=='D') {
-						cpou1.debito(valor);
+						cest1.debito(valor);
 					} 
 					else if (tipo=='C') {
-						cpou1.credito(valor);
+						cest1.credito(valor);
 					} else {
 						System.out.println("Não foi informado um tipo correto...");
+					}
+					System.out.printf("\nVocê tem liberado o valor de R$ %.2f aprovado no seu limite estudantil, deseja utilizar?"
+							+ "\nS - Sim"
+							+ "\nN- Não\n", cest1.getLimiteEstudantil());
+					resCada = leia.next().toUpperCase().charAt(0);
+					if(resCada=='S') {
+						System.out.println("Qual o valor você deseja utiizar?");
+						valor = leia.nextDouble();
+						cest1.usarEstudantil(valor);
+						if(valor<=cest1.getLimiteEstudantil()) {
+							System.out.println("Limite transferido com sucesso.\nSaldo atualizado: R$ "+cest1.getSaldo());
+
+						} else { 
+							System.out.println("Valor solicitado é maior que o limite disponível.");
+						}
 					}
 					System.out.println("Continua S/N : ");
 					op = leia.next().toUpperCase().charAt(0);
 					if (op=='N') {			
-						System.out.println("OPORTUNIDADE: Deseja retirar um talão de cheque?"
-								+ "\nLIMITE MÁXIMO DE 3 TALÕES."
-								+ "\nVALOR POR TALÃO: R$ 30.00");
 						
 						break;
 						
 					}
 				}
-				*/
+				
 				break;
 			case 6:
 				// sair

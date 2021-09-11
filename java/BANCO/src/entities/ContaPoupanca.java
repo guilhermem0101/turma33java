@@ -1,26 +1,32 @@
 package entities;
 
 public class ContaPoupanca extends Conta {
-	
-	//atributos
+	// atributos
 	private int diaAniversarioPoupanca;
-	
-	//construtores
+
+//construtores     
 	public ContaPoupanca(int numero, String cpf, int diaAniversarioPoupanca) {
 		super(numero, cpf);
 		this.diaAniversarioPoupanca = diaAniversarioPoupanca;
 	}
-	
-	//encapsulamento
+
+	// encapsulamento
 	public int getDiaAniversarioPoupanca() {
 		return diaAniversarioPoupanca;
 	}
 
 	public void setDiaAniversarioPoupanca(int diaAniversarioPoupanca) {
 		this.diaAniversarioPoupanca = diaAniversarioPoupanca;
-	} 
-	
-	//metodos
-	
-	
+	}
+
+	// metodos
+	public void correcao(int diaInformado) {
+		double valorCorrecao;
+		if (diaInformado == this.diaAniversarioPoupanca) {
+			valorCorrecao = (super.getSaldo() * 0.005);
+			super.credito(valorCorrecao);
+			System.out.println("SALDO CORRIGIDO R$ :"+super.getSaldo());
+			
+		}
+	}
 }
