@@ -56,4 +56,5 @@ on tb_classes.id  = tb_personagens.fk;
 select * from tb_personagens inner join tb_classes
 on tb_classes.id  = tb_personagens.fk
 where fk = 3;
- 
+
+select * from postagem

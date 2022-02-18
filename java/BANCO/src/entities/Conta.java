@@ -11,6 +11,8 @@ public class Conta {
 		super();
 		this.numero = numero;
 		this.cpf = cpf;
+		
+		
 	}
 	public int getNumero() {
 		return numero;
@@ -34,6 +36,9 @@ public class Conta {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+	
+	
+	
 	
 	public void credito(double valor) {
 		this.saldo += valor;
